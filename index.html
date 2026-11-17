@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SEGEL</title>
+<title>TIBS</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 
@@ -69,12 +69,12 @@ body {
 </head>
 <body>
 
-<h2>SEGEL</h2>
+<h2>TIBS</h2>
 
 <div class="summary">
     <h3>About this database</h3>
     <p>
-    SEGEL (Smoking Effects on Gene Expression of Lung) contains eight public expression microarray data sets from trachea epithelial cells, large airway epithelial cells, small airway epithelial cells, and alveolar macrophage.
+    TIBS (Smoking Effects on Gene Expression of Lung) contains eight public expression microarray data sets from trachea epithelial cells, large airway epithelial cells, small airway epithelial cells, and alveolar macrophage.
     The microarray data sets visualize the effects of smoking on gene expression in different human cells in the lungs. The database supports genes associated with
     multiple probe IDs, allowing users to retrieve
     all available documents for a given gene.
@@ -89,7 +89,7 @@ body {
     Multiple gene search: PAX8; DDR1; TP53 (exact match only)
     </p>
     <p style="margin-bottom: 0;">
-    <strong>Reference:</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0128326" target="_blank" rel="noopener noreferrer">SEGEL: A Web Server for Visualization of Smoking Effects on Human Lung Gene Expression</a>
+    <strong>Reference:</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0128326" target="_blank" rel="noopener noreferrer">TIBS: A Web Server for Visualization of Smoking Effects on Human Lung Gene Expression</a>
     </p>
 </div>
 
@@ -288,7 +288,7 @@ async function downloadAllPDFs() {
     btn.disabled = true;
 
     const zip = new JSZip();
-    const rootFolder = zip.folder("SEGEL_PDFs");
+    const rootFolder = zip.folder("TIBS_PDFs");
     let completed = 0;
     let failed = 0;
 
@@ -317,7 +317,7 @@ async function downloadAllPDFs() {
         const zipBlob = await zip.generateAsync({ type: "blob" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(zipBlob);
-        link.download = "SEGEL_PDFs.zip";
+        link.download = "TIBS_PDFs.zip";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
