@@ -151,7 +151,7 @@ If you still cannot find the genes you are interested in, please check their off
   const month = String(now.getMonth() + 1).padStart(2, '0');
   
   // Create a unique key for your site and the current month
-  const keyName = `Ttsttz-site-views-${year}-${month}`;
+  const keyName = `Ttsttz-TIBS-views-${year}-${month}`;
 
   // Fetch from CountAPI (the "/hit/" endpoint automatically increments and returns the count)
   fetch(`https://countapi.mileshilliard.com/api/v1/hit/${keyName}`)
