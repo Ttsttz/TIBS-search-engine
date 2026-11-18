@@ -142,9 +142,7 @@ All genes included in the TIBS database could be found <a href="Affy_U133_v2_gen
 If you still cannot find the genes you are interested in, please check their official gene symbols at <a href="http://www.genecards.org" target="_blank" rel="noopener noreferrer">www.genecards.org</a>.
 </p>
 
-<div id="visitor-counter-container">
-  <img id="monthly-counter-badge" src="" alt="Monthly Visitor Count" />
-</div>
+<p>This page has been viewed <span id="view-count">...</span> times this month.</p>
 
 <p style="font-size: 14px; color: #555;">
 We are grateful to Mr. Brain Hu from the Essenology Software Corp, Ms. Yan Xu and Mr. Yanming Bi from the Department of Pharmaceutical Science and Department of Statistics, University of South Florida for their expert advice on database software. 
@@ -373,19 +371,27 @@ document.getElementById("gene").addEventListener("keydown", function(event) {
     }
 });
 
-// Get the current date
+  // Get the current year and month (e.g., "2026-06")
   const now = new Date();
   const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Ensures 2 digits (e.g., "06" for June)
-  
-  // Create a unique path string for this specific month (e.g., "my-website-2026-06")
-  const currentMonthPath = `https://ttsttz.github.io/TIBS-search-engine/-${2026}-${11}`;
-  
-  // Construct the API URL for visitorbadge.io (replace 'my-github-username.github.io' with your site name)
-  const badgeUrl = `https://api.visitorbadge.io/api/visitors?path=${currentMonthPath}&countColor=%23263759`;
-  
-  // Inject the URL into the image source
-  document.getElementById('monthly-counter-badge').src = badgeUrl;
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const monthKey = `${year}-${month}`; // Creates a unique key like "2026-06"
+
+  // Configuration (Replace with your GitHub username or unique namespace)
+  const namespace = 'Ttsttz';
+  const keyName = `site-views-${monthKey}`;
+
+  // Fetch from CounterAPI (the "/up" endpoint increments the view count by 1)
+  fetch(`https://api.counterapi.dev/v1/${namespace}/${keyName}/up`)
+    .then(response => response.json())
+    .then(data => {
+      // Inject the raw number directly into your text element
+      document.getElementById('view-count').textContent = data.count;
+    })
+    .catch(error => {
+      console.error('Could not load view count:', error);
+      document.getElementById('view-count').textContent = 'several';
+    });
 </script>
 
 </body>
