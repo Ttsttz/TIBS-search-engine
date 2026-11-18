@@ -142,6 +142,10 @@ All genes included in the TIBS database could be found <a href="Affy_U133_v2_gen
 If you still cannot find the genes you are interested in, please check their official gene symbols at <a href="http://www.genecards.org" target="_blank" rel="noopener noreferrer">www.genecards.org</a>.
 </p>
 
+<div id="visitor-counter-container">
+  <img id="monthly-counter-badge" src="" alt="Monthly Visitor Count" />
+</div>
+
 <p style="font-size: 14px; color: #555;">
 We are grateful to Mr. Brain Hu from the Essenology Software Corp, Ms. Yan Xu and Mr. Yanming Bi from the Department of Pharmaceutical Science and Department of Statistics, University of South Florida for their expert advice on database software. 
 
@@ -368,6 +372,20 @@ document.getElementById("gene").addEventListener("keydown", function(event) {
         searchGene();
     }
 });
+
+// Get the current date
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // Ensures 2 digits (e.g., "06" for June)
+  
+  // Create a unique path string for this specific month (e.g., "my-website-2026-06")
+  const currentMonthPath = `my-github-username.github.io-${year}-${month}`;
+  
+  // Construct the API URL for visitorbadge.io (replace 'my-github-username.github.io' with your site name)
+  const badgeUrl = `https://api.visitorbadge.io/api/visitors?path=${currentMonthPath}&countColor=%23263759`;
+  
+  // Inject the URL into the image source
+  document.getElementById('monthly-counter-badge').src = badgeUrl;
 </script>
 
 </body>
