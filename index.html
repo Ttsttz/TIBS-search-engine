@@ -144,6 +144,27 @@ If you still cannot find the genes you are interested in, please check their off
 
 <p>This page has been viewed <span id="view-count">...</span> times this month.</p>
 
+    <!-- The script MUST go below the text element -->
+    <script>
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const monthKey = `${year}-${month}`;
+
+      const namespace = 'Ttsttz';
+      const keyName = `site-views-${monthKey}`;
+
+      fetch(`https://api.counterapi.dev/v1/${namespace}/${keyName}/up`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('view-count').textContent = data.count;
+        })
+        .catch(error => {
+          console.error('Could not load view count:', error);
+          document.getElementById('view-count').textContent = '1'; // Fallback so it doesn't stay blank
+        });
+    </script>
+
 <p style="font-size: 14px; color: #555;">
 We are grateful to Mr. Brain Hu from the Essenology Software Corp, Ms. Yan Xu and Mr. Yanming Bi from the Department of Pharmaceutical Science and Department of Statistics, University of South Florida for their expert advice on database software. 
 
@@ -370,28 +391,6 @@ document.getElementById("gene").addEventListener("keydown", function(event) {
         searchGene();
     }
 });
-
-// Get the current year and month dynamically
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const monthKey = `${year}-${month}`; // Automatically changes every month (e.g., "2026-11", "2026-12", etc.)
-
-  // Configuration
-  const namespace = 'Ttsttz';
-  const keyName = `site-views-${monthKey}`;
-
-  // Fetch from CounterAPI (the "/up" endpoint increments the view count by 1)
-  fetch(`https://api.counterapi.dev/v1/${namespace}/${keyName}/up`)
-    .then(response => response.json())
-    .then(data => {
-      // Inject the raw number directly into your text element
-      document.getElementById('view-count').textContent = data.count;
-    })
-    .catch(error => {
-      console.error('Could not load view count:', error);
-      document.getElementById('view-count').textContent = 'several';
-    });
 </script>
 
 </body>
