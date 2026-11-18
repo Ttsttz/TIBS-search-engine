@@ -371,13 +371,13 @@ document.getElementById("gene").addEventListener("keydown", function(event) {
     }
 });
 
-  // Get the current year and month (e.g., "2026-06")
+// Get the current year and month dynamically
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, '0');
-  const monthKey = `${year}-${month}`; // Creates a unique key like "2026-06"
+  const monthKey = `${year}-${month}`; // Automatically changes every month (e.g., "2026-11", "2026-12", etc.)
 
-  // Configuration (Replace with your GitHub username or unique namespace)
+  // Configuration
   const namespace = 'Ttsttz';
   const keyName = `site-views-${monthKey}`;
 
